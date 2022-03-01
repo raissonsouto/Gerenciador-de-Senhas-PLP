@@ -1,4 +1,4 @@
-# Wordle em Haskell para disciplina de paradigmas de linguagens de programação
+# Wordle em Haskell (PLP)
 
 ## Alunos
 
