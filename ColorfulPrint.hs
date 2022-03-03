@@ -21,6 +21,5 @@ module ColorfulPrint where
             else (color "red" (charToString letra))
 
     colorfulPrint::[String]->[String]->String
-    colorfulPrint tentativas==[] metadados==[] = ""
     colorfulPrint (tentativa:listaDeTentativas) (metadado:listaDeMetadados) recursao = do
         ((textColorizer tentativa metadado 0) ++ (colorfulPrint listaDeTentativas listaDeMetadados))

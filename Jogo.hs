@@ -1,6 +1,10 @@
-import System.IO
-
 module Jogo where
+
+    import System.IO
+    import ColorfulPrint
+    import GuessChecker
+    import SeletorDePalavras
+
     toLowerString :: [Char] -> [Char]
     toLowerString str = [ toLower x | x <- str]
     
@@ -18,10 +22,12 @@ module Jogo where
             hFlush stdout
             jogo (tentativas:metadados) recursao
         else do
-            -- (tentativas ++ newGuess)
-            -- let metadado = guessChecker newGuess
-            -- (metadados ++ metadado)
+            let newTentativas = (tentativas ++ newGuess)
+            let metadado = guessChecker  selectWord
+            let newMetadados = (metadados ++ metadado)
+
             putStrLn (colorfulPrint tentativas metadados)
-            if False == "VVVVV" then putStrLn "Voce ganhou!" -- colocar metadado no lugar do False: if metadado == "VVVVV" then putStrLn "Voce ganhou!"
+            
+            if metadado == "VVVVV" then putStrLn "Voce ganhou!"
             else if recursao > 3 then putStrLn "Você perdeu!"
             else jogo (tentativas:metadados) (recursao+1)
