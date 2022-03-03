@@ -22,8 +22,8 @@ module Jogo where
             -- let metadado = guessChecker newGuess
             -- (metadados ++ metadado)
             putStrLn (colorfulPrint tentativas metadados)
-            if False == "VVVVV" then putStrLn "Voce ganhou!" -- colocar metadado no lugar do False: if metadado == "VVVVV" then putStrLn "Voce ganhou!"
-            else if recursao > 3 then putStrLn "Você perdeu!"
+            if False == "VVVVV" then winMessage -- colocar metadado no lugar do False: if metadado == "VVVVV" then putStrLn "Voce ganhou!"
+            else if recursao > 3 then loseMessage
             else jogo (tentativas:metadados) (recursao+1)
 
     winMessage:: IO()
