@@ -1,5 +1,6 @@
 import System.IO
 import System.Exit
+import Jogo.jogo
 
 instructions::IO()
 instructions = do
@@ -68,7 +69,7 @@ wordleLogo = do
 
 startScreen::String -> IO()
 startScreen option = do
-    if option == "J" || option == "j" then print "jogar"
+    if option == "J" || option == "j" then jogo [["dudao","raiss"],["VVVEX","VVVVV"]] 0
     else if option == "I" || option == "i" then instructions
     else if option == "S" || option == "s" then exit
     else if option == "C" || option == "c" then credits
