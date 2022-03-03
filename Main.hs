@@ -1,9 +1,6 @@
 import System.IO
 import System.Exit
 
-
---mudar de IO para string!
---colocar recursão pra voltar pro menu
 instructions::IO()
 instructions = do
     putStrLn("\n"
@@ -42,7 +39,7 @@ credits = do
         ++"#                                                                                           #\n"
         ++"#############################################################################################\n"
         ++"\n"
-        ++"Titulo do jogo: WORDLE\n"
+        ++"Título do jogo: WORDLE\n"
         ++"Professor: Everton Leandro Galdino Alves\n"
         ++"Alunos:\n"
         ++"Raisson Souto (119210173)\n"
@@ -78,10 +75,8 @@ startScreen option = do
     else if option == "C" || option == "c" then credits
     else putStrLn("\n  A Letra digitada não corresponde.") 
 
-
-main::IO()
-main = do
-    wordleLogo
+mainScreen:: IO()
+mainScreen = do
     putStrLn "  [J]ogar"
     putStrLn "  [I]nstruções"
     putStrLn "  [C]réditos"
@@ -90,6 +85,12 @@ main = do
     hFlush stdout
     input <- getLine
     startScreen input
+    mainScreen
+
+main::IO()
+main = do
+    wordleLogo
+    mainScreen
 
 -- criar gameInicial.hs e fazer import
 -- [C]reditos 
