@@ -1,1 +1,0 @@
-#aqui deve vir a função que vai aleatoriamente pegar uma palavra em palavras.json (task)
