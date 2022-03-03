@@ -1,23 +1,36 @@
-module GuessChecker where
+import Data.List
+import Control.Monad.STM (check)
+import Data.Char(isUpper)
 
-    lettersChecker::Char->Char->Bool
-    lettersClassifier guessLetter correctLetter = do
-        if guessLetter == correctLetter then True
-        else False
+comparator :: Char -> Char -> Char 
+comparator a b
+    | a == b = 'V'
+    | otherwise  = a
 
-    checkLetterWithCWord::Char->String->Int->Int->String
-    checkLetterWithCWord guessLetter (correctLetter:otherCorrects) glIndex cwIndex = do
-        if lettersChecker guessLetter correctLetter && glIndex == cwIndex then "V"
-        else if lettersChecker guessLetter correctLetter then "E"
-        else "X"
+replace i r s = [if j == i then r else c | (j, c) <- zip [0..] s]
 
+checkUpperCase :: Char -> [Char] -> [Char]
+checkUpperCase g r
+    | isUpper g = [g]
+    | otherwise = r
 
-    guessChecker::String->[[String]]->[[String]]
-    guessChecker newGuess tentativas = do
+correctLetters :: String -> String -> Int -> String
+correctLetters guess answer pos
+    | pos == length guess = []
+    | otherwise = do 
+    let g = guess!!pos
+    let posG = findIndex(==g) answer
+    case posG of
+        Just a -> checkUpperCase g "A" ++ correctLetters guess (replace a 'A' answer) (pos + 1)
+        Nothing -> checkUpperCase g "P" ++ correctLetters guess answer (pos + 1)
+        
+            
+correctPositions :: String -> String -> String 
+correctPositions guess answer = zipWith comparator guess answer
 
-        lettersClassifier newGuess
-        if newGuess == "teste" then True
-        else False
+guessChecker :: String -> String -> String
+guessChecker guess answer = 
+        correctLetters (correctPositions guess answer) answer 0
 
-    --guessAnswer::[[String]]->Bool
-    --guessAnswer texto = do
+main :: IO()
+main = print (guessChecker "esset" "teste")
