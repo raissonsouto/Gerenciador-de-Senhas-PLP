@@ -66,7 +66,6 @@ wordleLogo = do
         ++"#                                                                             #\n"
         ++"###############################################################################\n")
 
---adicionar recursão pra chamar o menu dnv
 startScreen::String -> IO()
 startScreen option = do
     if option == "J" || option == "j" then print "jogar"
@@ -92,7 +91,3 @@ main = do
     wordleLogo
     mainScreen
 
--- criar gameInicial.hs e fazer import
--- [C]reditos 
--- else mensagem de erro startScreen
---ajeitar o instructions! "\n"
