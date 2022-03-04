@@ -30,8 +30,8 @@ module GuessChecker where
     correctPositions guess answer = zipWith comparator guess answer
 
     guessChecker :: String -> String -> String
-    guessChecker guess answer = "VVVEX"
-            --correctLetters (correctPositions guess answer) answer 0
+    guessChecker guess answer = 
+            correctLetters (correctPositions guess answer) answer 0
 
     main :: IO()
     main = print (guessChecker "esset" "teste")
