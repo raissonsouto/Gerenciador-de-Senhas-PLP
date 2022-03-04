@@ -69,7 +69,7 @@ wordleLogo = do
 
 startScreen::String -> IO()
 startScreen option = do
-    if option == "J" || option == "j" then Jogo.jogo [["dudao","raiss"],["VVVEX","VVVVV"]] 0
+    if option == "J" || option == "j" then jogo ["dudao","raiss"] ["VVVEX","VVVVV"] 0
     else if option == "I" || option == "i" then instructions
     else if option == "S" || option == "s" then exit
     else if option == "C" || option == "c" then credits
