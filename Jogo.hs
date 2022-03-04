@@ -2,6 +2,7 @@ module Jogo where
 
     import System.IO
     import ColorfulPrint
+    import SeletorDePalavras
     import GuessChecker
     import Data.Char (isLetter, toLower)
 
@@ -28,7 +29,8 @@ module Jogo where
             jogo tentativas metadados recursao
         else do
             let newTentativas = append newGuess tentativas
-            let metadado = guessChecker  newGuess "teste" --selectWord
+            palavraEscolhida <- selectorWord
+            let metadado = guessChecker  newGuess palavraEscolhida
             let newMetadados = append metadado metadados
 
             putStrLn (colorfulPrint newTentativas newMetadados)
