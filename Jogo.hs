@@ -18,7 +18,8 @@ module Jogo where
     
     jogo::[String]->[String]->Int->IO()
     jogo tentativas metadados recursao = do
-    
+        putStr("\n  Qual a palavra secreta? ")
+        hFlush stdout
         newGuess <- getLine
         if checkInputLength newGuess
         then do
@@ -48,7 +49,7 @@ module Jogo where
             ++"#           ██║   ╚██████╔╝╚██████╔╝     ╚███╔███╔╝██║██║ ╚████║     #\n"    
             ++"#           ╚═╝    ╚═════╝  ╚═════╝       ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝     #\n"
             ++"#                                                                    #\n"
-            ++"######################################################################")
+            ++"######################################################################\n")
     
     loseMessage:: IO()
     loseMessage = do
