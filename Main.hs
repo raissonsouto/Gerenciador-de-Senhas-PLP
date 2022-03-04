@@ -1,6 +1,7 @@
 import System.IO
 import System.Exit
 import Jogo
+import SeletorDePalavras
 
 instructions::IO()
 instructions = do
@@ -71,7 +72,8 @@ startScreen option = do
     if option == "J" || option == "j" then do
         putStr("\n  Palavra aleatória selecionada!")
         hFlush stdout
-        jogo [] [] 0
+        palavraEscolhida <- selectorWord
+        jogo [] [] palavraEscolhida 0
     else if option == "I" || option == "i" then instructions
     else if option == "S" || option == "s" then exit
     else if option == "C" || option == "c" then credits

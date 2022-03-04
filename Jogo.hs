@@ -2,7 +2,6 @@ module Jogo where
 
     import System.IO
     import ColorfulPrint
-    import SeletorDePalavras
     import GuessChecker
     import Data.Char (isLetter, toLower)
 
@@ -17,8 +16,8 @@ module Jogo where
     append a [] = [a]
     append a (x:xs) = x : append a xs
     
-    jogo::[String]->[String]->Int->IO()
-    jogo tentativas metadados recursao = do
+    jogo::[String]->[String]->String->Int->IO()
+    jogo tentativas metadados palavraEscolhida recursao = do
         putStr("\n  Qual a palavra secreta? ")
         hFlush stdout
         newGuess <- getLine
@@ -26,10 +25,9 @@ module Jogo where
         then do
             putStr "Palavra com tamanho errado. Tente novamente: "
             hFlush stdout
-            jogo tentativas metadados recursao
+            jogo tentativas metadados palavraEscolhida recursao
         else do
             let newTentativas = append newGuess tentativas
-            palavraEscolhida <- selectorWord
             let metadado = guessChecker  newGuess palavraEscolhida
             let newMetadados = append metadado metadados
 
@@ -37,7 +35,7 @@ module Jogo where
             
             if metadado == "VVVVV" then winMessage
             else if recursao > 3 then loseMessage
-            else jogo newTentativas newMetadados (recursao+1)
+            else jogo newTentativas newMetadados palavraEscolhida (recursao+1)
 
     winMessage:: IO()
     winMessage = do
