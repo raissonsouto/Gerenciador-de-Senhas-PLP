@@ -1,8 +1,8 @@
-module SeletorDePalavras where 
+module SeletorDePalavras where
     import System.IO
 
-    selectWord :: IO()
-    selectWord = do
+    selectorWord :: IO String
+    selectorWord = do
         json <- openFile "palavras.json" ReadMode
         numFile <- openFile "num.txt" ReadWriteMode
         arr <- hGetLine json
@@ -12,4 +12,4 @@ module SeletorDePalavras where
         let n = read num :: Int
         hClose numFile
         writeFile "num.txt" (show ((n + 1) `mod` length a))
-        (a !! n)
+        return (a !! n)
