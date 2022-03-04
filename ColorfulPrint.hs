@@ -16,10 +16,11 @@ module ColorfulPrint where
             else if metadado == 'E' then ((color "yellow" (charToString letra)) ++ (textColorizer letras metadados (recursao+1)))
             else ((color "red" (charToString letra)) ++ (textColorizer letras metadados (recursao+1)))
         else do
-            if metadado == 'V' then (color "green" (charToString letra))
-            else if metadado == 'E' then (color "yellow" (charToString letra))
-            else (color "red" (charToString letra))
+            if metadado == 'V' then ((color "green" (charToString letra)) ++ "\n")
+            else if metadado == 'E' then ((color "yellow" (charToString letra)) ++ "\n")
+            else ((color "red" (charToString letra)) ++ "\n")
 
     colorfulPrint::[String]->[String]->String
-    colorfulPrint (tentativa:listaDeTentativas) (metadado:listaDeMetadados) recursao = do
-        ((textColorizer tentativa metadado 0) ++ (colorfulPrint listaDeTentativas listaDeMetadados))
+    colorfulPrint tentativas metadados
+        | tentativas==[] && metadados==[] = ""
+        | otherwise = (textColorizer (head tentativas) (head metadados) 0) ++ (colorfulPrint (tail tentativas) (tail metadados))

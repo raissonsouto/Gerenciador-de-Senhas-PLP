@@ -3,7 +3,6 @@ module Jogo where
     import System.IO
     import ColorfulPrint
     import GuessChecker
-    import SeletorDePalavras
 
     toLowerString :: [Char] -> [Char]
     toLowerString str = [ toLower x | x <- str]
