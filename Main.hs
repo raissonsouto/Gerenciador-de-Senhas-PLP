@@ -12,7 +12,7 @@ instructions = do
         ++"#                                                                                           #\n"
         ++"#############################################################################################\n"
         ++"\nO jogo consiste em uma palavra de 5 letras selecionada\n"
-        ++"aleatoriamente, seu objetivo como JOGADOR é tentar adivinhá-la em 6 tentativas!\n"
+        ++"aleatoriamente, seu objetivo como JOGADOR é tentar adivinhá-la em 5 tentativas!\n"
         ++"\n1) Digite pela entrada padrão uma palavra de 5 letras\n"
         ++"1.1) Receba um feedback via terminal, em cores, sobre as 5 letras digitadas\n"
         ++"2) FEEDBACK EM CORES NO TERMINAL\n"
