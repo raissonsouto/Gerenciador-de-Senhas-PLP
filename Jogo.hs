@@ -37,7 +37,7 @@ module Jogo where
                 winMessage
                 putStrLn ("Parabéns! A palavra secreta é: " ++ palavraEscolhida)
 
-            else if recursao > 3 then  do
+            else if recursao > 4 then  do
                 loseMessage
                 putStrLn ("Tente outra vez. A palavra secreta é: " ++ palavraEscolhida)
 
