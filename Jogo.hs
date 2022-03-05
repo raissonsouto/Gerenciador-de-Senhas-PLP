@@ -55,7 +55,7 @@ module Jogo where
             ++"#           ╚═╝    ╚═════╝  ╚═════╝       ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝     #\n"
             ++"#                                                                    #\n"
             ++"######################################################################\n"
-            ++ "Parabens, a palavra screta era: " ++ palavraEscolhida)
+            ++ "Parabéns, a palavra secreta era: " ++ palavraEscolhida)
     
     loseMessage:: IO()
     loseMessage = do
@@ -69,4 +69,4 @@ module Jogo where
             ++"#           ╚═╝    ╚═════╝  ╚═════╝     ╚══════╝ ╚═════╝ ╚══════╝╚══════╝     #\n"
             ++"#                                                                             #\n"
             ++"###############################################################################\n"
-            ++ "Nao foi dessa vez, a palavra secreta era: " ++ palavraEscolhida)
+            ++ "Não foi dessa vez, a palavra secreta era: " ++ palavraEscolhida)
