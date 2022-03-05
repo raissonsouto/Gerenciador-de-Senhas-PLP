@@ -33,8 +33,14 @@ module Jogo where
 
             putStrLn (colorfulPrint newTentativas newMetadados)
             
-            if metadado == "VVVVV" then winMessage
-            else if recursao > 3 then loseMessage
+            if metadado == "VVVVV" then do
+                winMessage
+                putStrLn ("Parabéns! A palavra secreta é: " ++ palavraEscolhida)
+
+            else if recursao > 3 then  do
+                loseMessage
+                putStrLn ("Tente outra vez. A palavra secreta é: " ++ palavraEscolhida)
+
             else jogo newTentativas newMetadados palavraEscolhida (recursao+1)
 
     winMessage:: IO()
