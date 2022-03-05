@@ -1,6 +1,10 @@
 [
     {
-        "user": "Raisson",
-        "historico": []
+      "username": "everton",
+      "qtdTentativas": 0,
+      "qtdDeVitorias": 0,
+      "sequenciaDeVitorias": 0,
+      "maiorSequenciaDeVitorias": 0,
+      "distribuicao": [0,0,0,0,0,0,0]
     }
-]
+  ]
