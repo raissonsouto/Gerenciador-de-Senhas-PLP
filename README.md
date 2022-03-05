@@ -4,7 +4,7 @@
 
 - Erro com caractes especiais:
 
-<img src="erro-carecteres-especiais.png" alt="print do terminal com o erro"/>
+<img src="https://github.com/raissonsouto/Wordle-PLP/blob/main/erro-caracteres-especiais.png" alt="print do terminal com o erro"/>
 
 ## Alunos
 
