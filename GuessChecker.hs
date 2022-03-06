@@ -30,7 +30,7 @@ module GuessChecker where
 
     guessChecker :: String -> String -> String
     guessChecker guess answer = 
-            correctLetters (correctPositions guess answer) answer 0
+            correctLetters (correctPositions guess answer) (correctPositions answer guess) 0
 
     main :: IO()
     main = print (guessChecker "esset" "teste")

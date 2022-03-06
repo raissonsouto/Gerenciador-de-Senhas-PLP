@@ -114,13 +114,12 @@ module User where
 
   addResultados :: Int -> String -> User -> User
   addResultados resultado target usuario
-    | target /= show(username usuario) = user
-    | otherwise = usuario
-    where user =  User { username=username usuario
+    | "\"" ++ target ++ "\"" /= show (username usuario) = usuario
+    | otherwise  =  User { username=username usuario
          , qtdTentativas =qtdTentativas usuario + 1
          , qtdDeVitorias= if resultado < 6 then qtdDeVitorias usuario + 1 else qtdDeVitorias usuario
          , sequenciaDeVitorias = if resultado < 6 then sequenciaDeVitorias usuario + 1 else 0
-         , maiorSequenciaDeVitorias  =  max (maiorSequenciaDeVitorias usuario) (if resultado < 6 then sequenciaDeVitorias usuario + 1 else 0) 
+         , maiorSequenciaDeVitorias  =  max (maiorSequenciaDeVitorias usuario) (if resultado < 6 then sequenciaDeVitorias usuario + 1 else 0)
          , distribuicaoDeTentativasCorretas = replace resultado ((distribuicaoDeTentativasCorretas usuario !! resultado) + 1) (distribuicaoDeTentativasCorretas usuario)
            }
 

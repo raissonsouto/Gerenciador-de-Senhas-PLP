@@ -69,7 +69,7 @@ matchHistory username = do
     putStr("   -> Quantidade de vitórias: " ++ show vitorias ++"\n")
     putStr("   -> Vitórias Seguidas: " ++ show seqVitorias ++ "\n")
     putStr("   -> Vitórias Seguidas (Maior sequência): " ++ show maiorSeqVitorias ++ "\n")
-    putStr("   -> Distribuicao: " ++ show status ++ "\n")
+    putStr("   -> Distribuicao: " ++ "\n")
     putStr("      -> 1a tentativa: " ++ (show (head status)) ++ "\n")
     putStr("      -> 2a tentativa: " ++ show (status!!1) ++ "\n")
     putStr("      -> 3a tentativa: " ++ show (status!!2) ++ "\n")
