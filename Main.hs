@@ -2,7 +2,7 @@ import System.IO
 import System.Exit
 import Jogo
 import SeletorDePalavras
---import UserJsonHandler
+import User
 
 instructions::IO()
 instructions = do
@@ -51,7 +51,19 @@ credits = do
         ++"Joao Luciano (120110612)\n"
         ++"Rembrandt Costa (120110785)\n"
         ++"\n"
-        ++"Baseado no jogo TERMO -> https://term.ooo  \n") 
+        ++"Baseado no jogo TERMO -> https://term.ooo  \n")
+
+matchHistory:: String -> IO()
+matchHistory username = do
+    status <- getStats username
+    putStrLn("\n"
+        ++" #####################################################################\n"
+        ++"                      Histórico do Jogador "++ username ++ "\n"
+        ++" #####################################################################\n")
+    putStr("   -> Quantidade de tentativas: " ++ show (status !! 1) ++ "\n")
+    putStr("   -> Quantidade de vitórias: " ++ show (status !! 2) ++"\n")
+    putStr("   -> Vitórias Seguidas: " ++ show (status !! 3) ++"\n")
+    putStr("\n") 
         
 
 wordleLogo::IO()
@@ -79,7 +91,7 @@ startScreen option username = do
     else if option == "M" || option == "m" then instructions
     else if option == "S" || option == "s" then exit
     else if option == "C" || option == "c" then credits
-    else if option == "H" || option == "h" then putStrLn "h"--showStats username
+    else if option == "H" || option == "h" then matchHistory username
     else putStrLn("\n  A Letra digitada nao corresponde. Digite novamente.") 
 
 mainScreen::String -> IO()
