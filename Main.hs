@@ -22,6 +22,7 @@ instructions = do
         ++"3) VITÓRIA OU DERROTA?\n"
         ++"3.1) Vitória: Se dentro das 6 tentativas o JOGADOR conseguir advinhar a palavra, ele vence.\n"
         ++"3.2) Derrota: Se o JOGADOR não conseguir adivinhar a palavra após a sexta tentativa, ele perde.\n")
+
 exit::IO()
 exit = do
     putStrLn("\n"
@@ -29,6 +30,7 @@ exit = do
         ++"#                      ATÉ MAIS! OBRIGADO POR JOGAR :)              #\n"
         ++"#####################################################################\n") 
     exitSuccess
+
 credits::IO()
 credits = do   
     putStrLn("\n"
@@ -50,6 +52,7 @@ credits = do
         ++"\n"
         ++"Baseado no jogo TERMO -> https://term.ooo  \n") 
         
+
 wordleLogo::IO()
 wordleLogo = do
     putStrLn ("\n"
@@ -63,6 +66,7 @@ wordleLogo = do
         ++"#            ╚███╔███╔╝╚██████╔╝██║  ██║██████╔╝╚███████ ███████═╗            #\n"    
         ++"#             ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚══════╝ ╚══════╝            #\n"
         ++"###############################################################################\n")
+
 startScreen::String -> IO()
 startScreen option = do
     if option == "J" || option == "j" then do
@@ -74,6 +78,7 @@ startScreen option = do
     else if option == "S" || option == "s" then exit
     else if option == "C" || option == "c" then credits
     else putStrLn("\n  A Letra digitada não corresponde.") 
+
 mainScreen:: IO()
 mainScreen = do
     putStr ("  [J]ogar \n"
@@ -85,6 +90,7 @@ mainScreen = do
     input <- getLine
     startScreen input
     mainScreen
+
 main::IO()
 main = do
     wordleLogo
