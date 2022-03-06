@@ -110,22 +110,23 @@ module User where
           I.writeFile jsonFile (encodeToLazyText u)
       return (not r)
 
+  replace i r s = [if j == i then r else c | (j, c) <- zip [0..] s]
+
+  addResultados :: Int -> String -> User -> User
+  addResultados resultado target usuario
+    | target /= show(username usuario) = user
+    | otherwise = usuario
+    where user =  User { username=username usuario
+         , qtdTentativas =qtdTentativas usuario + 1
+         , qtdDeVitorias= if resultado < 6 then qtdDeVitorias usuario + 1 else qtdDeVitorias usuario
+         , sequenciaDeVitorias = if resultado < 6 then sequenciaDeVitorias usuario + 1 else 0
+         , maiorSequenciaDeVitorias  =  max (maiorSequenciaDeVitorias usuario) (if resultado < 6 then sequenciaDeVitorias usuario + 1 else 0) 
+         , distribuicaoDeTentativasCorretas = replace resultado ((distribuicaoDeTentativasCorretas usuario !! resultado) + 1) (distribuicaoDeTentativasCorretas usuario)
+           }
+
   addStats::Int -> String -> IO()
   addStats resultado usuario = do
-      u <- getUsers
-      let users =  u
-      let res =  filter (\x -> "\"" ++ usuario ++ "\"" ==  show (username x)) users
-
-      let partidas = qtdTentativas (head res)+1
-      if(resultado >= 0 && resultado < 6) then do
-        let qtdVitorias = (qtdDeVitorias (head res) + 1)
-        let seqVitorias = (sequenciaDeVitorias (head res) + 1)
-        if seqVitorias > maiorSequenciaDeVitorias (head res) then do
-            let maiorSeqVitorias = seqVitorias
-            print "a" 
-        else
-            print (maiorSequenciaDeVitorias (head res))
-              
-      else do
-        let derrotas = distribuicaoDeTentativasCorretas (head res)
-        print "oi"
+    u <- getUsers
+    let users = u
+    let res = map (\x -> addResultados resultado usuario x) users
+    I.writeFile jsonFile (encodeToLazyText  res)

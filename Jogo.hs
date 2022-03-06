@@ -3,11 +3,10 @@ module Jogo where
     import System.IO
     import ColorfulPrint
     import GuessChecker
+    import VerificaPalavra
     import Data.Char (isLetter, toLower)
-    
-    checkInputLength::String->Bool
-    checkInputLength texto = do
-        length texto /= 5
+    import Data.Bool (Bool(False))
+        
     
     append :: String -> [String] -> [String]
     append a [] = [a]
@@ -18,9 +17,10 @@ module Jogo where
         putStr("\n  Qual a palavra secreta? ")
         hFlush stdout
         newGuess <- getLine
-        if checkInputLength newGuess
+        verificaPalavraBool <- verificaPalavra newGuess
+        if (verificaPalavraBool == False)
         then do
-            putStr "Palavra com tamanho errado. Tente novamente: "
+            putStr "Palavra nao aceita. Tente novamente: "
             hFlush stdout
             jogo tentativas metadados palavraEscolhida recursao
         else do
