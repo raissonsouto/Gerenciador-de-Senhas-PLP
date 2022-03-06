@@ -26,7 +26,6 @@ module Jogo where
         else do
             let newTentativas = append newGuess tentativas
             let metadado = guessChecker  newGuess palavraEscolhida
-            print metadado
             let newMetadados = append metadado metadados
 
             putStrLn (colorfulPrint newTentativas newMetadados)
