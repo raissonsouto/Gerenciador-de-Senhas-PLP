@@ -79,8 +79,19 @@ startScreen option username = do
     else if option == "M" || option == "m" then instructions
     else if option == "S" || option == "s" then exit
     else if option == "C" || option == "c" then credits
-    else if option == "H" || option == "h" then putStrLn "h"--showStats username
+    else if option == "H" || option == "h" then matchHistory username
     else putStrLn("\n  A Letra digitada nao corresponde. Digite novamente.") 
+
+matchHistory:: String -> IO()
+matchHistory username = do
+    putStrLn("\n"
+        ++" #####################################################################\n"
+        ++"                      Histórico do Jogador "++ username ++      "\n"
+        ++" #####################################################################\n")
+    putStr("   -> Quantidade de tentativas: " ++ "\n")
+    putStr("   -> Quantidade de vitórias: " ++ "\n")
+    putStr("   -> Vitórias Seguidas: " ++ "\n")
+    putStr("\n")
 
 mainScreen::String -> IO()
 mainScreen username = do
