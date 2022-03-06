@@ -1,32 +1,10 @@
 [
-    {
-      "username": "everton",
-      "qtd-tentativas": 0,
-      "qtd-de-vitorias": 0,
-      "sequencia-de-vitorias": 0,
-      "maior-sequencia-de-vitorias": 0,
-      "distribuicao": {
-        "1": 0,
-        "2": 0,
-        "3": 0,
-        "4": 0,
-        "5": 0,
-        "lose": 0
-      }
-    },
-    {
-        "username": "dalton",
-        "qtd-tentativas": 0,
-        "qtd-de-vitorias": 0,
-        "sequencia-de-vitorias": 0,
-        "maior-sequencia-de-vitorias": 0,
-        "distribuicao": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 0,
-          "lose": 0
-        }
-      }
+  {
+    "username": "erverton",
+    "qtdTentativas": 0,
+    "qtdDeVitorias": 0,
+    "sequenciaDeVitorias": 0,
+    "maiorSequenciaDeVitorias": 0,
+    "distribuicao": [0,0,0,0,0,0,0]
+  }
 ]

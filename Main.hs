@@ -2,6 +2,7 @@ import System.IO
 import System.Exit
 import Jogo
 import SeletorDePalavras
+import UserJsonHandler
 
 instructions::IO()
 instructions = do
@@ -12,7 +13,7 @@ instructions = do
         ++"#                                                                                           #\n"
         ++"#############################################################################################\n"
         ++"\nO jogo consiste em uma palavra de 5 letras selecionada\n"
-        ++"aleatoriamente, seu objetivo como JOGADOR é tentar adivinhá-la em 5 tentativas!\n"
+        ++"aleatoriamente, seu objetivo como JOGADOR é tentar adivinhá-la em 6 tentativas!\n"
         ++"\n1) Digite pela entrada padrão uma palavra de 5 letras\n"
         ++"1.1) Receba um feedback via terminal, em cores, sobre as 5 letras digitadas\n"
         ++"2) FEEDBACK EM CORES NO TERMINAL\n"
@@ -22,6 +23,7 @@ instructions = do
         ++"3) VITÓRIA OU DERROTA?\n"
         ++"3.1) Vitória: Se dentro das 6 tentativas o JOGADOR conseguir advinhar a palavra, ele vence.\n"
         ++"3.2) Derrota: Se o JOGADOR não conseguir adivinhar a palavra após a sexta tentativa, ele perde.\n")
+
 exit::IO()
 exit = do
     putStrLn("\n"
@@ -29,6 +31,7 @@ exit = do
         ++"#                      ATÉ MAIS! OBRIGADO POR JOGAR :)              #\n"
         ++"#####################################################################\n") 
     exitSuccess
+
 credits::IO()
 credits = do   
     putStrLn("\n"
@@ -50,6 +53,7 @@ credits = do
         ++"\n"
         ++"Baseado no jogo TERMO -> https://term.ooo  \n") 
         
+
 wordleLogo::IO()
 wordleLogo = do
     putStrLn ("\n"
@@ -63,20 +67,22 @@ wordleLogo = do
         ++"#            ╚███╔███╔╝╚██████╔╝██║  ██║██████╔╝╚███████ ███████═╗            #\n"    
         ++"#             ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚══════╝ ╚══════╝            #\n"
         ++"###############################################################################\n")
-startScreen::String -> IO()
-startScreen option = do
+
+startScreen::String -> String -> IO()
+startScreen option username = do
     if option == "J" || option == "j" then do
         putStr("\n  Palavra aleatória selecionada!")
         hFlush stdout
-        jogo [] [] 0
         palavraEscolhida <- selectorWord
         jogo [] [] palavraEscolhida 0
+        addStats username
     else if option == "I" || option == "i" then instructions
     else if option == "S" || option == "s" then exit
     else if option == "C" || option == "c" then credits
     else putStrLn("\n  A Letra digitada não corresponde.") 
-mainScreen:: IO()
-mainScreen = do
+
+mainScreen::String -> IO()
+mainScreen username = do
     putStr ("  [J]ogar \n"
         ++ "  [I]nstruções \n"
         ++ "  [C]réditos\n"
@@ -84,9 +90,25 @@ mainScreen = do
         ++ "  Digite uma letra >>> ")
     hFlush stdout
     input <- getLine
-    startScreen input
+    startScreen input username
     mainScreen
+
+getIn::IO()
+getIn = do
+    putStr "Qual o seu username: "
+    hFlush stdout
+    username <- getLine
+    if isUserRegistered username
+    then
+        putStrLn ("\nUsuário previamente cadastrado! Bem vindo" ++ username ++ "\n")
+        username
+    else do
+        putStrLn ("\nUsuário cadastrado com sucesso! Bem vindo" ++ username ++ "\n")
+        addUser username
+        username
+
 main::IO()
 main = do
     wordleLogo
-    mainScreen
+    let username = getIn
+    mainScreen username
