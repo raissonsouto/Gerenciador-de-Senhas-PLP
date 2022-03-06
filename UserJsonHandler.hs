@@ -16,5 +16,9 @@ getStats username = do
 showStats::[Int]->IO()
 -- ????
 
-addUser::String->Bool
--- ?????
+addUser::String-> IO Bool
+addUser user = do
+    !userId <- fmap (length.lines) (readFile "User.json")
+    us <- User <$> (putStrLn "User: " >> readLn) <*> 
+
+

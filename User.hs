@@ -1,8 +1,10 @@
 import Data.Aeson
 import GHC.Generics
+import Data.ByteString hiding (getLine, putStrLn)
+import Data.ByteString.Lazy hiding (getLine, putStrLn)
 
 data User =
-  User { username::!Text
+  User { username :: !Text
          , qtdTentativas::Int
          , qtdDeVitorias::Int
          , sequenciaDeVitorias::Int
