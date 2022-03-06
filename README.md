@@ -16,7 +16,19 @@ Para rodar o jogo basta clonar o repositório com o comando:
 ```
 $ git clone https://github.com/raissonsouto/Wordle-PLP.git
 ```
-Tendo o Haskell instalado na sua máquina, acesse o diretório e utilize o comando: 
+Tendo o Haskell e o Cabal instalado na sua máquina, instale as dependências ```aeson``` e ```random```:
+```
+$ cabal update
+```
+
+```
+$ cabal install --lib aeson
+```
+
+```
+$ cabal install --lib random
+```
+Depois acesse o diretório do projeto e utilize o comando: 
 ```
 $ runhaskell Main.hs
 ```
