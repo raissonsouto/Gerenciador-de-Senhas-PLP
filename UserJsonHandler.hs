@@ -8,7 +8,7 @@ module UserJsonHandler where
     getJSON = B.readFile jsonFile
 
     isUserRegistered::String->Bool
-    isUserRegistered usernmae = True
+    isUserRegistered username = True
 
     getStats::String->[Int]
     getStats username = [1,1,1,1]
@@ -18,10 +18,11 @@ module UserJsonHandler where
         putStrLn ("veja essa incrivel estatistica!")
 
     addUser::String->Bool
-    addStats username = True
+    addUser username = True
         -- 
 
-
     addStats::String->Bool
-    addStats username = True
+    addStats username = do
+        if True then True
+        else True
         -- vai mexer no json do usuario adicionando dados de novas partidas.

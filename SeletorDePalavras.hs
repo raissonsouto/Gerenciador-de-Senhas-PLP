@@ -1,15 +1,20 @@
 module SeletorDePalavras where
     import System.IO
-
+    import System.Random
+    
+    randomNopik::Int->Int
+    randomNopik length = do
+        randomRIO(0,length-1):: IO Int
+        
     selectorWord :: IO String
     selectorWord = do
+        let words = getWords
+        let selectedIndex = randomNopik (length words)
+        return (words !! selectedIndex)
+
+    getWords:: [String]
+    getWords = do
         json <- openFile "palavras.json" ReadMode
-        numFile <- openFile "num.txt" ReadWriteMode
         arr <- hGetLine json
-        num <- hGetLine numFile
         hClose json
-        let a = read arr :: [String]
-        let n = read num :: Int
-        hClose numFile
-        writeFile "num.txt" (show ((n + 1) `mod` length a))
-        return (a !! n)
+        read arr :: [String]

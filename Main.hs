@@ -2,7 +2,7 @@ import System.IO
 import System.Exit
 import Jogo
 import SeletorDePalavras
-import UserJsonHandler
+--import UserJsonHandler
 
 instructions::IO()
 instructions = do
@@ -75,40 +75,37 @@ startScreen option username = do
         hFlush stdout
         palavraEscolhida <- selectorWord
         jogo [] [] palavraEscolhida 0
-        addStats username
+        --addStats username
     else if option == "I" || option == "i" then instructions
     else if option == "S" || option == "s" then exit
     else if option == "C" || option == "c" then credits
+    else if option == "H" || option == "h" then "h"--showStats username
     else putStrLn("\n  A Letra digitada não corresponde.") 
 
 mainScreen::String -> IO()
 mainScreen username = do
     putStr ("  [J]ogar \n"
         ++ "  [I]nstruções \n"
+        ++ "  [H]istórico\n"
         ++ "  [C]réditos\n"
         ++ "  [S]air\n"
         ++ "  Digite uma letra >>> ")
     hFlush stdout
     input <- getLine
     startScreen input username
-    mainScreen
-
-getIn::IO()
-getIn = do
-    putStr "Qual o seu username: "
-    hFlush stdout
-    username <- getLine
-    if isUserRegistered username
-    then
-        putStrLn ("\nUsuário previamente cadastrado! Bem vindo" ++ username ++ "\n")
-        username
-    else do
-        putStrLn ("\nUsuário cadastrado com sucesso! Bem vindo" ++ username ++ "\n")
-        addUser username
-        username
+    mainScreen username
 
 main::IO()
 main = do
     wordleLogo
-    let username = getIn
+    putStr "Qual o seu username: "
+    hFlush stdout
+    username <- getLine
+    if True --isUserRegistered username
+    then
+        putStrLn ("\nUsuário previamente cadastrado! Bem vindo" ++ username ++ "\n")
+    else do
+        putStrLn ("\nUsuário cadastrado com sucesso! Bem vindo" ++ username ++ "\n")
+        --addUser username
+
     mainScreen username
