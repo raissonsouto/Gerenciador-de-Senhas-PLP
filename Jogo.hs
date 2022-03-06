@@ -4,9 +4,6 @@ module Jogo where
     import ColorfulPrint
     import GuessChecker
     import Data.Char (isLetter, toLower)
-
-    toLowerString :: [Char] -> [Char]
-    toLowerString str = [ toLower x | x <- str]
     
     checkInputLength::String->Bool
     checkInputLength texto = do
@@ -16,7 +13,7 @@ module Jogo where
     append a [] = [a]
     append a (x:xs) = x : append a xs
     
-    jogo::[String]->[String]->String->Int->IO()
+    jogo::[String]->[String]->String->Int->IO Int
     jogo tentativas metadados palavraEscolhida recursao = do
         putStr("\n  Qual a palavra secreta? ")
         hFlush stdout
@@ -36,10 +33,12 @@ module Jogo where
             if metadado == "VVVVV" then do
                 winMessage
                 putStrLn ("Parabéns! A palavra secreta é: " ++ (textColorizer palavraEscolhida "VVVVV" 0))
+                return (recursao)
 
             else if recursao > 4 then  do
                 loseMessage
                 putStrLn ("Tente outra vez. A palavra secreta é: " ++ (textColorizer palavraEscolhida "VVVVV" 0))
+                return (recursao+1)
 
             else jogo newTentativas newMetadados palavraEscolhida (recursao+1)
 

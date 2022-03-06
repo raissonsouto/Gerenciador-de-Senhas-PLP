@@ -3,6 +3,7 @@ import System.Exit
 import Jogo
 import SeletorDePalavras
 import User
+import User (isUserRegistered, createUser, getMaiorSequencia, User (username))
 
 instructions::IO()
 instructions = do
@@ -56,13 +57,19 @@ credits = do
 matchHistory:: String -> IO()
 matchHistory username = do
     status <- getStats username
+    tentativas <- getTentativas username
+    vitorias <- getQtdVitorias username
+    seqVitorias <- getSequencia username
+    maiorSeqVitorias <- getMaiorSequencia username
     putStrLn("\n"
         ++" #####################################################################\n"
         ++"                      Histórico do Jogador "++ username ++ "\n"
         ++" #####################################################################\n")
-    putStr("   -> Quantidade de tentativas: " ++ show (status !! 1) ++ "\n")
-    putStr("   -> Quantidade de vitórias: " ++ show (status !! 2) ++"\n")
-    putStr("   -> Vitórias Seguidas: " ++ show (status !! 3) ++"\n")
+    putStr("   -> Quantidade de tentativas: " ++ show tentativas ++ "\n")
+    putStr("   -> Quantidade de vitórias: " ++ show vitorias ++"\n")
+    putStr("   -> Vitórias Seguidas: " ++ show seqVitorias ++ "\n")
+    putStr("   -> Vitórias Seguidas (Maior sequência): " ++ show maiorSeqVitorias ++ "\n")
+    putStr("   -> Distribuicao: " ++ show status ++ "\n")
     putStr("\n") 
         
 
@@ -86,8 +93,9 @@ startScreen option username = do
         putStrLn("\n  Palavra aleatória selecionada!")
         hFlush stdout
         palavraEscolhida <- selectorWord
-        jogo [] [] palavraEscolhida 0
-        --addStats username
+        game <- (jogo [] [] palavraEscolhida 0)
+        let gameResult = game :: Int
+        addStats gameResult username
     else if option == "M" || option == "m" then instructions
     else if option == "S" || option == "s" then exit
     else if option == "C" || option == "c" then credits
@@ -113,11 +121,12 @@ main = do
     putStr "Qual o seu username: "
     hFlush stdout
     username <- getLine
-    if True --isUserRegistered username
+    userRegisteredBool <- isUserRegistered username
+    if userRegisteredBool
     then
         putStrLn ("\nUsuário previamente cadastrado! Bem vindo, " ++ username ++ ".\n")
     else do
+        addUserUnregistered <- addUser username
         putStrLn ("\nUsuário cadastrado com sucesso! Bem vindo, " ++ username ++ ".\n")
-        --addUser username
 
     mainScreen username

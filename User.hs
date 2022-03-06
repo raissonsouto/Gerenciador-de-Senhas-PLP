@@ -50,6 +50,34 @@ module User where
       let res =  filter (\x -> "\"" ++ usuario ++ "\"" ==  show (username x)) users
       return (distribuicaoDeTentativasCorretas (head res))
 
+  getTentativas::String-> IO Int
+  getTentativas usuario = do
+      u <- getUsers
+      let users =  u
+      let res =  filter (\x -> "\"" ++ usuario ++ "\"" ==  show (username x)) users
+      return (qtdTentativas (head res))
+
+  getMaiorSequencia::String-> IO Int
+  getMaiorSequencia usuario = do
+      u <- getUsers
+      let users =  u
+      let res =  filter (\x -> "\"" ++ usuario ++ "\"" ==  show (username x)) users
+      return (maiorSequenciaDeVitorias (head res))
+
+  getSequencia::String-> IO Int
+  getSequencia usuario = do
+      u <- getUsers
+      let users =  u
+      let res =  filter (\x -> "\"" ++ usuario ++ "\"" ==  show (username x)) users
+      return (sequenciaDeVitorias (head res))
+
+  getQtdVitorias::String-> IO Int
+  getQtdVitorias usuario = do
+      u <- getUsers
+      let users =  u
+      let res =  filter (\x -> "\"" ++ usuario ++ "\"" ==  show (username x)) users
+      return (qtdDeVitorias (head res))
+
 
   showStats::[Int]->IO()
   showStats stats = do
@@ -81,3 +109,23 @@ module User where
       else
           I.writeFile jsonFile (encodeToLazyText u)
       return (not r)
+
+  addStats::Int -> String -> IO()
+  addStats resultado usuario = do
+      u <- getUsers
+      let users =  u
+      let res =  filter (\x -> "\"" ++ usuario ++ "\"" ==  show (username x)) users
+
+      let partidas = qtdTentativas (head res)+1
+      if(resultado >= 0 && resultado < 6) then do
+        let qtdVitorias = (qtdDeVitorias (head res) + 1)
+        let seqVitorias = (sequenciaDeVitorias (head res) + 1)
+        if seqVitorias > maiorSequenciaDeVitorias (head res) then do
+            let maiorSeqVitorias = seqVitorias
+            print "a" 
+        else
+            print (maiorSequenciaDeVitorias (head res))
+              
+      else do
+        let derrotas = distribuicaoDeTentativasCorretas (head res)
+        print "oi"
