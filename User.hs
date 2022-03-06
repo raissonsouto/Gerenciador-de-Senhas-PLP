@@ -83,6 +83,6 @@ addUser usuario = do
 
 main:: IO()
 main = do
-  b <- showStats "duds"
+  b <- addUser "raisson"
   let a = b
   print b
