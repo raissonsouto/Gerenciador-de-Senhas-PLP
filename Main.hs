@@ -20,7 +20,7 @@ instructions = do
         ++"2.1) Verde: a letra EXISTE e está no LOCAL CORRETO.\n"
         ++"2.2) Amarelo: a letra EXISTE, porém está no local errado.\n"
         ++"2.3) Vermelho: a letra INEXISTE na palavra.\n"
-        ++"3) VITÓRIA OU DERROTA?\n"
+        ++"3) VITORIA OU DERROTA?\n"
         ++"3.1) Vitória: Se dentro das 6 tentativas o JOGADOR conseguir advinhar a palavra, ele vence.\n"
         ++"3.2) Derrota: Se o JOGADOR errar após a sexta tentativa, ele perde.\n")
 
@@ -71,7 +71,7 @@ wordleLogo = do
 startScreen::String -> String -> IO()
 startScreen option username = do
     if option == "J" || option == "j" then do
-        putStr("\n  Palavra aleatória selecionada!")
+        putStrLn("\n  Palavra aleatória selecionada!")
         hFlush stdout
         palavraEscolhida <- selectorWord
         jogo [] [] palavraEscolhida 0
@@ -79,8 +79,8 @@ startScreen option username = do
     else if option == "M" || option == "m" then instructions
     else if option == "S" || option == "s" then exit
     else if option == "C" || option == "c" then credits
-    else if option == "H" || option == "h" then "h"--showStats username
-    else putStrLn("\n  A Letra digitada não corresponde.") 
+    else if option == "H" || option == "h" then putStrLn "h"--showStats username
+    else putStrLn("\n  A Letra digitada nao corresponde. Digite novamente.") 
 
 mainScreen::String -> IO()
 mainScreen username = do

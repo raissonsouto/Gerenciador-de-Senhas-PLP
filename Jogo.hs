@@ -35,11 +35,11 @@ module Jogo where
             
             if metadado == "VVVVV" then do
                 winMessage
-                putStrLn ("Parabéns! A palavra secreta é: " ++ palavraEscolhida)
+                putStrLn ("Parabéns! A palavra secreta é: " ++ (textColorizer palavraEscolhida "VVVVV" 0))
 
             else if recursao > 4 then  do
                 loseMessage
-                putStrLn ("Tente outra vez. A palavra secreta é: " ++ palavraEscolhida)
+                putStrLn ("Tente outra vez. A palavra secreta é: " ++ (textColorizer palavraEscolhida "VVVVV" 0))
 
             else jogo newTentativas newMetadados palavraEscolhida (recursao+1)
 
