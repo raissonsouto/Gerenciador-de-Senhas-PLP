@@ -1,6 +1,5 @@
 module GuessChecker where
     import Data.List
-    import Control.Monad.STM (check)
     import Data.Char(isUpper)
 
     comparator :: Char -> Char -> Char 

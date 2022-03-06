@@ -1,15 +1,12 @@
 module SeletorDePalavras where
     import System.IO
-
-    selectorWord :: IO String
+    import System.Random
+        
+    selectorWord::IO String
     selectorWord = do
         json <- openFile "palavras.json" ReadMode
-        numFile <- openFile "num.txt" ReadWriteMode
         arr <- hGetLine json
-        num <- hGetLine numFile
         hClose json
-        let a = read arr :: [String]
-        let n = read num :: Int
-        hClose numFile
-        writeFile "num.txt" (show ((n + 1) `mod` length a))
+        let a = read arr :: [String]    
+        n <- randomRIO(0,(length a)-1)
         return (a !! n)

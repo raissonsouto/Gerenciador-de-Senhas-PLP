@@ -1,20 +1,28 @@
-import qualified Data.ByteString.Lazy as B
+module UserJsonHandler where
+    import qualified Data.ByteString.Lazy as B
 
-jsonFile :: FilePath
-jsonFile = "User.json"
+    jsonFile :: FilePath
+    jsonFile = "User.json"
 
-getJSON :: IO B.ByteString
-getJSON = B.readFile jsonFile
+    getJSON :: IO B.ByteString
+    getJSON = B.readFile jsonFile
 
-isUserRegistered::String->Bool
-isUserRegistered -- ????
+    isUserRegistered::String->Bool
+    isUserRegistered username = True
 
-getStats::String->[Int]
-getStats username = do
--- ?????
+    getStats::String->[Int]
+    getStats username = [1,1,1,1]
 
-showStats::[Int]->IO()
--- ????
+    showStats::[Int]->IO()
+    showStats estatisticas = do
+        putStrLn ("veja essa incrivel estatistica!")
 
-addUser::String->Bool
--- ?????
+    addUser::String->Bool
+    addUser username = True
+        -- 
+
+    addStats::String->Bool
+    addStats username = do
+        if True then True
+        else True
+        -- vai mexer no json do usuario adicionando dados de novas partidas.

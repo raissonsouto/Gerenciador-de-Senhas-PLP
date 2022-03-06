@@ -2,6 +2,7 @@ import System.IO
 import System.Exit
 import Jogo
 import SeletorDePalavras
+--import UserJsonHandler
 
 instructions::IO()
 instructions = do
@@ -67,31 +68,44 @@ wordleLogo = do
         ++"#             ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚══════╝ ╚══════╝            #\n"
         ++"###############################################################################\n")
 
-startScreen::String -> IO()
-startScreen option = do
+startScreen::String -> String -> IO()
+startScreen option username = do
     if option == "J" || option == "j" then do
         putStr("\n  Palavra aleatória selecionada!")
         hFlush stdout
         palavraEscolhida <- selectorWord
         jogo [] [] palavraEscolhida 0
+        --addStats username
     else if option == "I" || option == "i" then instructions
     else if option == "S" || option == "s" then exit
     else if option == "C" || option == "c" then credits
+    else if option == "H" || option == "h" then "h"--showStats username
     else putStrLn("\n  A Letra digitada não corresponde.") 
 
-mainScreen:: IO()
-mainScreen = do
+mainScreen::String -> IO()
+mainScreen username = do
     putStr ("  [J]ogar \n"
         ++ "  [I]nstruções \n"
+        ++ "  [H]istórico\n"
         ++ "  [C]réditos\n"
         ++ "  [S]air\n"
         ++ "  Digite uma letra >>> ")
     hFlush stdout
     input <- getLine
-    startScreen input
-    mainScreen
+    startScreen input username
+    mainScreen username
 
 main::IO()
 main = do
     wordleLogo
-    mainScreen
+    putStr "Qual o seu username: "
+    hFlush stdout
+    username <- getLine
+    if True --isUserRegistered username
+    then
+        putStrLn ("\nUsuário previamente cadastrado! Bem vindo" ++ username ++ "\n")
+    else do
+        putStrLn ("\nUsuário cadastrado com sucesso! Bem vindo" ++ username ++ "\n")
+        --addUser username
+
+    mainScreen username
