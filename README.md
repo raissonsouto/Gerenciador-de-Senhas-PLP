@@ -50,7 +50,7 @@ Após a quinta tentativa, caso o jogador não consiga descobrir a palavra o jogo
 
 ## Observações Adicionais:
 
-+ Em algumas máquinas, o projeto apresenta problemas para exibir caracteres especiais. Tentamos importar funções auxiliares que ajudassem nisso, mas essas funções só pioravam a situação na medida que passavam a mostrar outros caracteres que não os esperados em algumas situações. Então para resolver isso, algumas palavras que deveriam estar sem acentos podem estar sem os mesmos (o erro não ocorre com acento agudo (á) mas acontece com circunflexo (â) e o til (ã)).
++ Em algumas máquinas, o projeto apresenta problemas para exibir caracteres especiais. Tentamos importar funções auxiliares que ajudassem nisso, mas essas funções só pioravam a situação na medida que passavam a mostrar outros caracteres que não os esperados em algumas situações. Então para resolver isso, algumas palavras que deveriam estar sem acentos podem estar com eles (o erro não ocorre com acento agudo (á) mas acontece com circunflexo (â) e o til (ã)).
 
 <img src="https://github.com/raissonsouto/Wordle-PLP/blob/main/erro-caracteres-especiais.png" alt="print do terminal com o erro"/>
 
